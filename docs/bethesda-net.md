@@ -14,6 +14,24 @@ Recon source: `scratch/decompile-doom-plus-doom-ii/RECON.md` (§Network,
 - Transport is the shared Nintendo `libcurl`/WebSocket stack (see
   [protocol](protocol.md)); no bundled certs, no hardcoded IPs.
 
+## Recovered values (2026-10-27, static)
+
+- Paths: `/login`, `/login/token-login`, `/v1/connect`,
+  `/ugcmods/v2/curated`, `/ugcmods/v2/content`,
+  `/ugcmods/v2/content/subscribe`, `/ugcmods/v2/stats/`,
+  `/notification/v1/system`. NSO entitlements:
+  `https://nso-entitlements.osiris2.quakeapi.com/token`.
+- Static `X-BNET-Key` header blob (128 chars, rodata VA `0x1e2a962`,
+  sole consumer the header setter at `0x1839c10`, sent verbatim
+  beside `X-BNET-Agent`):
+
+    CzdAaFVGDGpcSnUwQ0M3Lk5ZZWBzTEsqKCRCSHczZEwpUXchPmlNQERKK2g3OW5eVVlRSVswV3kpOCoxMDJddlJqLiVDc1w0dXhsOQozdzJAIU5rJEtVWTlnOEYiWAxJ
+
+- No OAuth client pair by design (key + session headers instead).
+  The runtime `X-BNET-Key` variant (singleton `0x24f6350+0x2e0`,
+  session-derived) and the auth/token handshake still need a live
+  capture.
+
 ## Auth/token plan (uncaptured)
 
 1. Capture the token grant against `api.bethesda.net`: which credential the

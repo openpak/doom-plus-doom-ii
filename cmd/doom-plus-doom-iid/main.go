@@ -10,9 +10,10 @@
 // Demonware in this title. See docs/protocol.md.
 //
 // Current state: scaffold. The PlayFab, Bethesda.net and UGC routes exist as
-// stubs that answer 501 until the title is configured (PlayFab TitleId still
-// unknown, Bethesda.net auth/UGC protocol uncaptured). The one live behaviour
-// is the NSO entitlement gate, which passes when nx-baas accepts the token.
+// stubs that answer 501 until their handlers land (PlayFab TitleId A0C71
+// recovered, Bethesda.net static key + endpoints recovered, auth/UGC
+// protocol still uncaptured). The one live behaviour is the NSO
+// entitlement gate, which passes when nx-baas accepts the token.
 // Long-term PlayFab traffic should move to platforms/switch/games/playfab
 // (playfabd), which already serves OpenPak's supported PlayFab title APIs with
 // per-title routing; the stubs here keep this title's surface explicit until
@@ -37,8 +38,8 @@ func env(name, fallback string) string {
 func main() {
 	addr := flag.String("addr", env("DOOM_HTTP_ADDR", ":23630"), "HTTP listen address")
 	health := flag.String("health-addr", env("DOOM_HEALTH_ADDR", ":23631"), "health listen address")
-	titleID := flag.String("playfab-title-id", os.Getenv("DOOM_PLAYFAB_TITLE_ID"), "PlayFab TitleId (empty = stubs return 501)")
-	bethesda := flag.String("bethesda-api", os.Getenv("DOOM_BETHESDA_API"), "Bethesda.net API base URL (empty = stubs return 501)")
+	titleID := flag.String("playfab-title-id", env("DOOM_PLAYFAB_TITLE_ID", "A0C71"), "PlayFab TitleId (empty = stubs return 501)")
+	bethesda := flag.String("bethesda-api", env("DOOM_BETHESDA_API", "https://api.bethesda.net"), "Bethesda.net API base URL (empty = stubs return 501)")
 	flag.Parse()
 
 	s := &server{titleID: *titleID, bethesda: *bethesda}

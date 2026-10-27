@@ -32,8 +32,11 @@ in step with `cmd/doom-plus-doom-iid`.
   Sockets + DTLS + Azure relay with NAT-traversal tokens; voice is Opus with
   text chat and Azure speech transcription (`.tts.speech.microsoft.com`)
   (RECON §Network).
-- PlayFab TitleId value is unknown: only the `.playfabapi.com` suffix and a
-  `titleId %s` param survive in strings (RECON §Gaps).
+- PlayFab TitleId `A0C71` (recovered 2026-10-27: rodata literal VA
+  `0x1ea4e48`, assigned to `PlayFabSettings::titleId` at `0x19a8c8c`;
+  overridable at runtime only via `-playfab_serviceid` argv, which
+  Switch retail never passes). Emulated shape:
+  `https://A0C71.playfabapi.com/Client/*`.
 
 ## Bethesda.net
 
