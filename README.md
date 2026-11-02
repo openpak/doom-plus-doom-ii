@@ -1,6 +1,6 @@
 # DOOM + DOOM II
 
-OpenPak's DOOM + DOOM II server (scaffold).
+OpenPak's DOOM + DOOM II server.
 
 | | |
 | --- | --- |
@@ -15,7 +15,7 @@ OpenPak's DOOM + DOOM II server (scaffold).
 | --- | --- | --- |
 | `<titleId>.playfabapi.com` | Auth, lobbies, matchmaking, PlayStream (PlayFab XPlat C++ SDK) | this repo (`doom-plus-doom-iid`, stubs: 501 until configured) |
 | `api.bethesda.net`, `ugcmods.bethesda.net` | Bethesda.net account + UGC mods | this repo (stubs: 501 until configured) |
-| `prod-notification-websocket.bethesda.net` | Notification websocket | not yet served (see TODOs) |
+| `prod-notification-websocket.bethesda.net` | Notification websocket | see TODOs |
 | `nso-entitlements.osiris2.quakeapi.com` | NSO entitlement check | this repo (passes through) |
 
 No NEX, Photon, EOS or Demonware in this title. Long-term, PlayFab traffic

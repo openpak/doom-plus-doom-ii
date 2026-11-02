@@ -52,10 +52,3 @@ Recon source: `scratch/decompile-doom-plus-doom-ii/RECON.md` (§Network,
    connect/auth, subscribe topics, message schema, keepalive.
 4. Server side: serve a static mod catalogue first (list + download of
    repo-local WADs/mods), uploads and live notifications later.
-
-## Current server state
-
-`doom-plus-doom-iid` answers `/mods`, `/mods/*`, `/ugc/*`, `/notifications`,
-`/notifications/*` and `/auth/*` with 501 until `DOOM_BETHESDA_API` is set,
-and 501-with-config until the handlers above land. The wss endpoint is not
-served yet; reserve a port in 23632–23639 when it is.
